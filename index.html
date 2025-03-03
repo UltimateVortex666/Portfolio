@@ -518,23 +518,36 @@ body::before {
         </div>
     </section>
     
-   <script>
-    function scrollLeft() {
-        document.querySelector('.projects-carousel').scrollBy({ left: -220, behavior: 'smooth' });
-    }
-
-    function scrollRight() {
-        document.querySelector('.projects-carousel').scrollBy({ left: 220, behavior: 'smooth' });
-    }
-
-    document.querySelector('.left').addEventListener('click', scrollLeft);
-    document.querySelector('.right').addEventListener('click', scrollRight);
-
-    // Automatic scrolling every 2 seconds
-    setInterval(() => {
-        scrollRight();
-    }, 2000);
-</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const carousel = document.querySelector(".projects-carousel");
+            const prevBtn = document.querySelector(".left");
+            const nextBtn = document.querySelector(".right");
+    
+            function scrollLeft() {
+                if (carousel.scrollLeft === 0) {
+                    // Go to the last item when at the beginning
+                    carousel.scrollTo({ left: carousel.scrollWidth, behavior: "instant" });
+                }
+                carousel.scrollBy({ left: -220, behavior: 'smooth' });
+            }
+    
+            function scrollRight() {
+                if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 1) {
+                    // Reset to the first item when reaching the end
+                    carousel.scrollTo({ left: 0, behavior: "instant" });
+                }
+                carousel.scrollBy({ left: 220, behavior: 'smooth' });
+            }
+    
+            prevBtn.addEventListener("click", scrollLeft);
+            nextBtn.addEventListener("click", scrollRight);
+    
+            // Auto-scroll every 2 seconds
+            setInterval(scrollRight, 2000);
+        });
+    </script>
+    
 
        
     

@@ -40,7 +40,7 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="index.php">Home</a>
+        <a href="index.html">Home</a>
     </nav>
 
     <div class="container">
@@ -78,28 +78,27 @@
                 track.style.transform = `translateX(${-index * certWidth}px)`;
             }
 
-            nextBtn.addEventListener("click", () => {
-                if (index < totalCertificates - 1) {
-                    index++;
-                } else {
-                    index = 0; // Loop to first
-                }
+            function nextSlide() {
+                index = (index + 1) % totalCertificates; // Loop back to start
                 updateCarousel();
-            });
+            }
 
-            prevBtn.addEventListener("click", () => {
-                if (index > 0) {
-                    index--;
-                } else {
-                    index = totalCertificates - 1; // Loop to last
-                }
+            function prevSlide() {
+                index = (index - 1 + totalCertificates) % totalCertificates; // Loop back to end
                 updateCarousel();
-            });
+            }
+
+            nextBtn.addEventListener("click", nextSlide);
+            prevBtn.addEventListener("click", prevSlide);
 
             window.addEventListener("resize", updateCarousel);
             updateCarousel();
+
+            // Auto-scroll every 3 seconds
+            setInterval(nextSlide, 3000);
         });
     </script>
+
 
 </body>
 </html>

@@ -518,18 +518,24 @@ body::before {
         </div>
     </section>
     
-    <script>
-        function scrollLeft() {
-            document.querySelector('.projects-carousel').scrollBy({ left: -220, behavior: 'smooth' });
-        }
-    
-        function scrollRight() {
-            document.querySelector('.projects-carousel').scrollBy({ left: 220, behavior: 'smooth' });
-        }
-    
-        document.querySelector('.left').addEventListener('click', scrollLeft);
-        document.querySelector('.right').addEventListener('click', scrollRight);
-        </script>
+   <script>
+    function scrollLeft() {
+        document.querySelector('.projects-carousel').scrollBy({ left: -220, behavior: 'smooth' });
+    }
+
+    function scrollRight() {
+        document.querySelector('.projects-carousel').scrollBy({ left: 220, behavior: 'smooth' });
+    }
+
+    document.querySelector('.left').addEventListener('click', scrollLeft);
+    document.querySelector('.right').addEventListener('click', scrollRight);
+
+    // Automatic scrolling every 2 seconds
+    setInterval(() => {
+        scrollRight();
+    }, 2000);
+</script>
+
        
     
     
